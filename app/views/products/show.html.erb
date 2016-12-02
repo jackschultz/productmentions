@@ -1,0 +1,13 @@
+<h1>
+  <%= @product.title %>
+</h1>
+
+<div>
+  <%= link_to "Amazon Link", @product.url %>
+</div>
+
+<% @product.mentions.each do |mention| %>
+  <div>
+    <%= link_to mention.comment.text[0..10], mention.comment.url %>
+  </div>
+<% end %>
