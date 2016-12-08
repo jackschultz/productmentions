@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-2">
+    <% if mention.product.image_url %>
+      <%= link_to image_tag(mention.product.image_url, class: "img-thumbnail"), mention.product.url, target: "_blank" %>
+    <% else %>
+      <%= link_to image_tag("http://placehold.it/114x170", class: "img-thumbnail"), mention.product.url, target: "_blank" %>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-12">
+        <p><b>Reddit Thread:</b> <%= link_to mention.comment.thread_title, mention.comment.url, target: "_blank" %> <%= mention.comment.written_at.strftime("%b %d, %Y") %></p>
+        <p><b>Amazon Link: </b><%= link_to mention.product.title, mention.product.url, target: "_blank" %></p>
+        <% if controller.controller_name != "subsites" %>
+          <p><b>SubReddit</b>: <%= link_to "/r/" + mention.comment.subsite.name, mention.comment.subsite %></p>
+        <% end %>
+        <% if controller.controller_name != "product_groups" %>
+          <p><b>Product Group</b>: <%= link_to mention.product.product_group.name, mention.product.product_group %></p>
+        <% end %>
+        <p><b><%= link_to "0 other mentions", product_path(mention.product) %></b></p>
+      </div>
+    </div>
+  </div>
+</div>

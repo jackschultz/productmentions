@@ -1,0 +1,5 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= mention.comment.written_at.strftime("%b %d, %Y") %>: <%= link_to mention.comment.thread_title, mention.comment.url, target: "_blank" %>
+  </div>
+</div>

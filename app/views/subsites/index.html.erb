@@ -1,0 +1,5 @@
+<% @subsites.each do |subsite| %>
+  <div>
+    <%= link_to subsite.name, subsite_path(subsite) %>
+  </div>
+<% end %>

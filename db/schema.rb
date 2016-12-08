@@ -10,16 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202171303) do
+ActiveRecord::Schema.define(version: 20161206213830) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "subsite_id"
     t.string   "url"
-    t.string   "username"
+    t.string   "author"
     t.string   "text"
     t.datetime "written_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "site_comment_ident"
+    t.string   "site_thread_ident"
+    t.string   "html"
+    t.string   "thread_title"
   end
 
   create_table "mentions", force: :cascade do |t|
@@ -43,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161202171303) do
     t.string   "url"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "image_url"
   end
 
   create_table "sites", force: :cascade do |t|

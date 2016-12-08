@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :product_groups, only: [:index, :show]
+  resources :subsites, only: [:index, :show]
 
 end
