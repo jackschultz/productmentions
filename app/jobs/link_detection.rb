@@ -8,15 +8,15 @@ def asin_from_uri(uri)
     asins.push(asin)
   end
   return asins
-end
 
-strings.each do |string|
-  urls = URI.extract(string, /http(s)?|www./)
+  strings.each do |string|
+    urls = URI.extract(string, /http(s)?|www./)
 
-  urls.each do |url|
-    uri = URI.parse(url)
-    if uri.host.include?("amazon")
-      puts asin_from_uri(uri)
+    urls.each do |url|
+      uri = URI.parse(url)
+      if uri.host.include?("amazon")
+        puts asin_from_uri(uri)
+      end
     end
   end
 end
