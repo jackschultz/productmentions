@@ -9,11 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
-#gathering
-gem 'httparty'
 gem 'sidekiq'
-gem 'asin'
-gem 'curb'
 
 gem 'will_paginate', '~> 3.1.0'
 
