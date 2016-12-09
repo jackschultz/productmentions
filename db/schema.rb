@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206213830) do
+ActiveRecord::Schema.define(version: 20161209194414) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "subsite_id"
@@ -48,6 +51,20 @@ ActiveRecord::Schema.define(version: 20161206213830) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "image_url"
+  end
+
+  create_table "scrape_logs", force: :cascade do |t|
+    t.string   "scrape_type"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "start_ident"
+    t.string   "end_ident"
+    t.integer  "mentions_count"
+    t.integer  "comments_count"
+    t.boolean  "error"
+    t.string   "error_message"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "sites", force: :cascade do |t|
