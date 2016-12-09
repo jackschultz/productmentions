@@ -17,7 +17,7 @@
         <% if controller.controller_name != "product_groups" %>
           <p><b>Product Group</b>: <%= link_to mention.product.product_group.name, mention.product.product_group %></p>
         <% end %>
-        <p><b><%= link_to "0 other mentions", product_path(mention.product) %></b></p>
+        <p><b><%= link_to "Mentioned #{mention.product.mentions.count-1} other times", product_path(mention.product) %></b></p>
       </div>
     </div>
   </div>
