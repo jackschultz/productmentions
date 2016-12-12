@@ -1,5 +1,5 @@
 <% @product_groups.each do |product_group| %>
   <div>
-    <%= link_to product_group.name, product_group_path(product_group) %>
+    <%= render "product_group", product_group: product_group %>
   </div>
 <% end %>
