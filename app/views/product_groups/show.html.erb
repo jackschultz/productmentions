@@ -6,4 +6,4 @@
   <%= render 'mentions/full_mention', mention: mention %>
   </br>
 <% end %>
-<%= will_paginate @mentions %>
+<%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
