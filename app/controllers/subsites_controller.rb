@@ -1,7 +1,7 @@
 class SubsitesController < ApplicationController
 
   def index
-    @subsites = Subsite.all
+    @subsites = Subsite.joins(:mentions).select('subsites.*, count(comment_id) as "mentions_count"').group("subsites.id").order("mentions_count desc")
   end
 
   def show
