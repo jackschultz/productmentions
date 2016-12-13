@@ -2,8 +2,8 @@
 <li class='nav-item'><%= link_to 'All Mentions', mentions_path, class: 'nav-link' %></li>
 <li class='nav-item'><%= link_to 'Subreddits', subsites_path, class: 'nav-link' %></li>
 <li class='nav-item'><%= link_to 'Product Groups', product_groups_path, class: 'nav-link' %></li>
-<li class='nav-item float-xs-right'><%= link_to 'About', page_path('about'), class: 'nav-link' %></li>
-<li class='nav-item float-xs-right'><%= link_to 'Contact', page_path('contact'), class: 'nav-link' %></li>
+<li class='nav-item'><%= link_to 'About', page_path('about'), class: 'nav-link' %></li>
+<li class='nav-item'><%= link_to 'Contact', page_path('contact'), class: 'nav-link' %></li>
 <%= form_tag search_path, method: 'get', class: "form-inline float-xs-right" do %>
   <%= text_field_tag :term, params[:term], class: "form-control", placeholder: "Search" %>
   <%= button_tag "Search", type: 'submit', name: nil, class: "btn btn-outline-primary" %>
