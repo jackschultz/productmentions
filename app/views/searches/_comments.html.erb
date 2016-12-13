@@ -1,5 +1,6 @@
 </br>
 <h3>Threads</h3>
+<% if @comments.any? %>
   <% @comments.each do |comment| %>
   <div>
     <%= render 'searches/comment', comment: comment %>
@@ -14,4 +15,7 @@
   <%= link_to 'View all relevant threads', search_path(group: 'comments', term: params[:term]) %>
 <% end %>
 
+<% else %>
+  <i>No threads found!</i>
+<% end %>
 </br>

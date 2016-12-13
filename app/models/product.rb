@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   end
 
   def self.search(term)
-    where("title LIKE ?", "%#{term}%")
+    where("lower(title) LIKE ?", "%#{term.downcase}%")
   end
 
   self.per_page = 20

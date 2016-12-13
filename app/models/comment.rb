@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   has_many :mentions, dependent: :destroy
 
   def self.search(term)
-    where("thread_title LIKE ?", "%#{term}%")
+    where("lower(thread_title) LIKE ?", "%#{term.downcase}%")
   end
 
   self.per_page = 20
