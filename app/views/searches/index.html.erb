@@ -1,0 +1,20 @@
+<h2>Results</h2>
+
+<% if params[:term] && params[:term] != '' %>
+  <div>
+    <i>Searching for: <b><%= params[:term] %></b></i>
+  </div>
+
+  <% if (@comments && @comments.any?) || (params[:group] && params[:group] == 'comments') %>
+    <%= render 'searches/comments' %>
+  <% end %>
+
+  <% if (@products && @products.any?) || (params[:group] && params[:group] == 'products') %>
+    <%= render 'searches/products' %>
+  <% end %>
+
+<% else %>
+  <div>
+    <i>Please supply search term!</i>
+  </div>
+<% end %>

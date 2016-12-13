@@ -7,4 +7,10 @@ class Product < ApplicationRecord
     self.url + '?tag=pmentions-20'
   end
 
+  def self.search(term)
+    where("title LIKE ?", "%#{term}%")
+  end
+
+  self.per_page = 20
+
 end

@@ -1,6 +1,38 @@
-<% @mentions.each do |mention| %>
-  <%= render 'mentions/full_mention', mention: mention %>
-  </br>
-<% end %>
-
-<%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Top Amazon Product Groups</h3>
+        <% @product_groups.each do |product_group| %>
+          <div>
+            <%= render 'product_groups/product_group', product_group: product_group %>
+          </div>
+        <% end %>
+        </br>
+        <%= link_to 'View all amazon product groups', product_groups_path %>
+        </br>
+      </br>
+      </div>
+      <div class="col-md-12">
+        <h3>Top Subreddits</h3>
+        <% @subsites.each do |subsite| %>
+          <div>
+            <%= render 'subsites/subsite', subsite: subsite %>
+          </div>
+        <% end %>
+        </br>
+        <%= link_to 'View all subreddits', subsites_path %>
+        </br>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3>Recent Mentions</h3>
+    </br>
+    <% @mentions.each do |mention| %>
+      <%= render 'mentions/half_mention', mention: mention %>
+      </br>
+    <% end %>
+    <%= link_to 'View all recent mentions', mentions_path %>
+  </div>
+</div>

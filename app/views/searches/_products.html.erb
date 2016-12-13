@@ -1,0 +1,14 @@
+</br>
+<h3>Products</h3>
+<% @products.each do |product| %>
+  <div>
+    <%= render 'searches/product', product: product %>
+  </div>
+<% end %>
+
+<% if params[:group] == 'products' %>
+  <%= will_paginate @products, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% else %>
+  <%= link_to 'View all relevant products', search_path(group: 'products', term: params[:term]) %>
+<% end %>
+</br>

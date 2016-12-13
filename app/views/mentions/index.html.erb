@@ -1,9 +1,6 @@
-<h1>
-  <%= link_to @subsite.name, @subsite.url, target: "_blank" %>
-</h1>
-</br>
 <% @mentions.each do |mention| %>
   <%= render 'mentions/full_mention', mention: mention %>
   </br>
 <% end %>
+
 <%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
