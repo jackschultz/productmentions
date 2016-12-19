@@ -2,6 +2,7 @@ class Product < ApplicationRecord
 
   has_many :mentions, dependent: :destroy
   belongs_to :product_group
+  delegate :comment, :to => :mentions
 
   def affiliate_url
     self.url + '?tag=pmentions-20'

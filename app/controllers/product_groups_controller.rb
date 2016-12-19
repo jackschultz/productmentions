@@ -2,12 +2,15 @@ class ProductGroupsController < ApplicationController
 
   def index
     if params[:tf] == 'day'
-      @product_groups = ProductGroup.joins(:mentions).where("mentions.created_at > current_date - interval '1 days'").select('product_groups.*, count(product_id) as "mentions_count"').group("product_groups.id").order("mentions_count desc")
+      interval = '1 days'
+    elsif params[:tf] == 'week'
+      interval = '7 days'
     elsif params[:tf] == 'month'
-      @product_groups = ProductGroup.joins(:mentions).select('product_groups.*, count(product_id) as "mentions_count"').group("product_groups.id").order("mentions_count desc")
+      interval = '30 days'
     else
-      @product_groups = ProductGroup.joins(:mentions).where("mentions.created_at > current_date - interval '7 days'").select('product_groups.*, count(product_id) as "mentions_count"').group("product_groups.id").order("mentions_count desc")
+      interval = '1 year'
     end
+    @product_groups = ProductGroup.joins(:mentions).where("mentions.created_at > current_date - interval '#{interval}'").select('product_groups.*, count(product_id) as "mentions_count"').group("product_groups.id").order("mentions_count desc")
   end
 
   def show

@@ -1,7 +1,7 @@
 class Mention < ApplicationRecord
 
-  belongs_to :product, counter_cache: true
-  belongs_to :comment, counter_cache: true
+  belongs_to :product
+  belongs_to :comment
 
   self.per_page = 30
 
