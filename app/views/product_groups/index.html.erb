@@ -4,6 +4,11 @@
 View Mentions by Amazon Product Groups
 </h6>
 
+</br>
+<div>
+  Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month'], (params['tf'] if ['day', 'week', 'month'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
+</div>
+</br>
 <% @product_groups.each do |product_group| %>
   <div>
     <%= render "product_group", product_group: product_group %>
