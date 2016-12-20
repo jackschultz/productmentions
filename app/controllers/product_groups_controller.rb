@@ -25,11 +25,11 @@ class ProductGroupsController < ApplicationController
     if params[:tf] == 'day'
       interval = '1 days'
     elsif params[:tf] == 'week'
-      interval = '7 days'
+      interval = '1 week'
     elsif params[:tf] == 'month'
       interval = '30 days'
     else
-      interval = '1 year'
+      interval = '1 week'
     end
     return interval
   end
