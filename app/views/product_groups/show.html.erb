@@ -2,8 +2,29 @@
   <%= @product_group.name %>
 </h1>
 </br>
-<% @mentions.each do |mention| %>
-  <%= render 'mentions/full_mention', mention: mention %>
+
+</br>
+<div>
+  Sort by: <%= select_tag :sort, options_for_select(['recency', 'frequency'], (params['sort'] if ['recency', 'frequency'].include?(params['sort'])) || 'recency'), id: "sort-select", onchange: 'sort_update()' %>
+</div>
+</br>
+
+<% if params[:sort] == 'frequency' %>
+  <div>
+    Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month'], (params['tf'] if ['day', 'week', 'month'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
+  </div>
   </br>
 <% end %>
-<%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+<% if params[:sort] == 'frequency' %>
+  <% @products.each do |product| %>
+    <%= render 'products/half_product', product: product %>
+  <% end %>
+  <%= will_paginate @products, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% else %>
+  <% @mentions.each do |mention| %>
+    <%= render 'mentions/full_mention', mention: mention %>
+  <% end %>
+  <%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% end %>
+

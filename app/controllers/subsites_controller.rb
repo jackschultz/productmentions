@@ -6,17 +6,17 @@ class SubsitesController < ApplicationController
   end
 
   def show
-    interval = interval_from_params
+    @interval = interval_from_params
     @subsite = Subsite.find(params[:id])
     if params[:sort] == 'recency'
-      @products = Product.joins(mentions: :comment).where("comments.subsite_id = ?", @subsite.id).group("products.id, comments.written_at").order("comments.written_at desc")
+      @mentions = @subsite.mentions.joins(:comment).order("comments.written_at desc").paginate(:page => params[:page])
     elsif params[:sort] == 'frequency'
       @products = Product.joins(mentions: :comment).select('products.*, count(product_id) as "mentions_count"').group("products.id").where("comments.subsite_id = ?", @subsite.id).order("mentions_count desc")
+      @products = @products.where("comments.written_at > current_date - interval '#{@interval}'")
+      @products = @products.paginate(:page => params[:page])
     else #default to recency
-      @products = Product.joins(mentions: :comment).where("comments.subsite_id = ?", @subsite.id).group("products.id, comments.written_at").order("comments.written_at desc")
+      @mentions = @subsite.mentions.joins(:comment).order("comments.written_at desc").paginate(:page => params[:page])
     end
-    @products = @products.where("comments.written_at > current_date - interval '#{interval}'")
-    @products = @products.paginate(:page => params[:page])
   end
 
   private
@@ -33,4 +33,5 @@ class SubsitesController < ApplicationController
     end
     return interval
   end
+
 end

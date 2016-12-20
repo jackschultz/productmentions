@@ -1,44 +1,52 @@
 <div class="row">
   <div class="col-md-12">
     <h4>
-      <%= link_to product.title, product.url %>
+      <%= link_to product.title, product_path(product) %>
     </h4>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2">
     <% if !product.image_url.nil?  %>
       <%= image_tag product.image_url, class: "img-thumbnail" %>
     <% else %>
       <%= image_tag "http://placehold.it/114x170", class: "img-thumbnail" %>
     <% end %>
   </div>
+  <div class="col-md-10">
+    <p><b>Amazon Link: </b><%= link_to product.title, product.affiliate_url, target: "_blank" %> (<%= link_to 'non-ref', product.url, target: "_blank" %>)</p>
+    <% if controller.controller_name != "product_groups" %>
+      <p><b>Product Group</b>: <%= link_to product.product_group.name, product.product_group %></p>
+    <% end %>
+  </div>
 </div>
 
-<br>
+</br>
 
 <div class="row">
   <div class="col-md-12">
-    <h4>
-      Mentions in this subreddit
-    </h4>
-    <% product.mentions.joins(:comment).where("comments.subsite_id = ?", @subsite.id).group("mentions.id, comments.written_at").order("comments.written_at desc").each do |mention| %>
-      <%= render "mentions/mention", mention: mention %>
+    <% if controller.controller_name == "subsites" %>
+      <h4>
+        <%= pluralize(product.mentions_count, 'mention') %> in this subreddit in past <%= params[:tf] || 'week' %>
+      </h4>
+      <% mentions_of_product_in_subsite_within_interval(product, @subsite, @interval).each do |mention| %>
+        <%= render "mentions/mention", mention: mention %>
+      <% end %>
+    <% end %>
+    <% if controller.controller_name == "product_groups" %>
+      <h4>
+        <%= pluralize(product.mentions_count, 'mention') %> in this product group in past <%= params[:tf] || 'week' %>
+      </h4>
+      <% mentions_of_product_in_product_group_within_interval(product, product.product_group, @interval).each do |mention| %>
+        <%= render "mentions/mention", mention: mention %>
+      <% end %>
     <% end %>
   </div>
 </div>
 </br>
 
-<div class="row">
-  <div class="col-md-12">
-    <h4>
-      Mentions in other subreddits
-    </h4>
-    <% if product.mentions.joins(:comment).where("comments.subsite_id != ?", @subsite.id).group("mentions.id, comments.written_at").order("comments.written_at desc").each do |mention| %>
-      <%= render "mentions/mention", mention: mention %>
-    <% end.empty? %>
-      <i>No other mentions!</i>
-    <% end %>
-  </div>
+<div>
+  <%= link_to "View all #{product.mentions.count} total mentions", product_path(product) %>
 </div>
 </br>
+

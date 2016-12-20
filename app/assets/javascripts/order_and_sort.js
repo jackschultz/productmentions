@@ -28,6 +28,7 @@ function time_frame_update() {
 function sort_update() {
   url_vars = getUrlVars();
   delete url_vars.page; //if page is in there, go to start
+  delete url_vars.tf; //start over on time frame
   var url = window.location.href.split('?')[0];
   value = $('#sort-select').val();
   url_vars.sort = value;

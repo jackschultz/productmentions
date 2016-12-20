@@ -1,5 +1,5 @@
 <h1>
-  <%= link_to @subsite.name, @subsite.url, target: "_blank" %>
+  <%= link_to "/r/#{@subsite.name}", @subsite.url, target: "_blank" %>
 </h1>
 
 </br>
@@ -8,13 +8,22 @@
 </div>
 </br>
 
+<% if params[:sort] == 'frequency' %>
 <div>
   Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month'], (params['tf'] if ['day', 'week', 'month'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
 </div>
 </br>
-
-<% @products.each do |product| %>
-  <%= render 'products/half_product', product: product %>
 <% end %>
 
-<%= will_paginate @products, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% if params[:sort] == 'frequency' %>
+  <% @products.each do |product| %>
+    <%= render 'products/half_product', product: product %>
+  <% end %>
+  <%= will_paginate @products, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% else %>
+  <% @mentions.each do |mention| %>
+    <%= render 'mentions/full_mention', mention: mention %>
+  <% end %>
+  <%= will_paginate @mentions, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>
+<% end %>
+
