@@ -29,7 +29,7 @@ class SubsitesController < ApplicationController
     elsif params[:tf] == 'month'
       interval = '30 days'
     else
-      interval = '1 year'
+      interval = '1 week'
     end
     return interval
   end
