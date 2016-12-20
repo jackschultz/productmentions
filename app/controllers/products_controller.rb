@@ -9,19 +9,4 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  private
-
-  def interval_from_params
-    if params[:tf] == 'day'
-      interval = '1 days'
-    elsif params[:tf] == 'week'
-      interval = '1 week'
-    elsif params[:tf] == 'month'
-      interval = '30 days'
-    else
-      interval = '1 week'
-    end
-    return interval
-  end
-
 end
