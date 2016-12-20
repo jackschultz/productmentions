@@ -1,5 +1,14 @@
+<h2>Monst Mentioned Products</h2>
+
+</br>
+<div>
+  Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month'], (params['tf'] if ['day', 'week', 'month'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
+</div>
+</br>
+
 <% @products.each do |product| %>
   <div>
-    <%= link_to product.title, product_path(product) %>
+    <%= render "products/half_product", product: product %>
   </div>
 <% end %>
+<%= will_paginate @products, :renderer => WillPaginate::ActionView::BootstrapLinkRenderer %>

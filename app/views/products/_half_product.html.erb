@@ -41,6 +41,9 @@
         <%= render "mentions/mention", mention: mention %>
       <% end %>
     <% end %>
+    <% if controller.controller_name == "products" %>
+      <%= pluralize(product.mentions_count, 'mention') %> in past <%= params[:tf] || 'week' %>
+    <% end %>
   </div>
 </div>
 </br>
