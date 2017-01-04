@@ -4,10 +4,6 @@ class Product < ApplicationRecord
   belongs_to :product_group
   delegate :comment, :to => :mentions
 
-  def affiliate_url
-    self.url + '?tag=pmentions-20'
-  end
-
   def self.search(term)
     where("lower(title) LIKE ?", "%#{term.downcase}%")
   end

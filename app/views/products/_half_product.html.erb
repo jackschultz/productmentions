@@ -14,7 +14,7 @@
     <% end %>
   </div>
   <div class="col-md-10">
-    <p><b>Amazon Link: </b><%= link_to product.title, product.affiliate_url, target: "_blank" %> (<%= link_to 'non-ref', product.url, target: "_blank" %>)</p>
+    <p><b>Amazon Link: </b><%= link_to product.title, product.url, target: "_blank" %></p>
     <% if controller.controller_name != "product_groups" %>
       <p><b>Product Group</b>: <%= link_to product.product_group.name, product.product_group %></p>
     <% end %>
