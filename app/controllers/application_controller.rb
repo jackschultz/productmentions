@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
       interval = '7 days'
     elsif params[:tf] == 'month'
       interval = '30 days'
+    elsif params[:tf] == 'year'
+      interval = '1 year'
     else
       interval = '1 week'
     end
