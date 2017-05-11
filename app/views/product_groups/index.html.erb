@@ -6,7 +6,7 @@ View Mentions by Amazon Product Groups
 
 </br>
 <div>
-  Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month', 'year'], (params['tf'] if ['day', 'week', 'month'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
+  Mentions in past: <%= select_tag :tf, options_for_select(['day', 'week', 'month', 'year'], (params['tf'] if ['day', 'week', 'month', 'year'].include?(params['tf'])) || 'week'), id: "time-frame-select", onchange: 'time_frame_update()' %>
 </div>
 </br>
 
