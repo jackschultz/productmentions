@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <% if Rails.env.production? %>
-        <%= render 'layouts/tag_manager_head' %>
-    <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Product Mentions" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Product Mentions" %>">
@@ -16,9 +13,6 @@
 
   </head>
   <body>
-    <% if Rails.env.production? %>
-        <%= render 'layouts/tag_manager_body' %>
-    <% end %>
     <header>
       <%= render 'layouts/navigation' %>
     </header>
